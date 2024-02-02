@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import classes from './meal-item.module.css';
+import { Meal } from '@/lib/meals';
 
 export default function MealItem({
   title,
@@ -9,18 +10,17 @@ export default function MealItem({
   image,
   summary,
   creator,
-}: {
-  title: string;
-  slug: string;
-  image: string;
-  summary: string;
-  creator: string;
-}) {
+}: Meal) {
   return (
     <article className={classes.meal}>
       <header>
         <div className={classes.image}>
-          <Image src={image} alt={title} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"/>
+          <Image
+            src={`https://enespcetin-nextjs-demo-users-image.s3.eu-west-3.amazonaws.com/${image}`}
+            alt={title}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
         </div>
         <div className={classes.headerText}>
           <h2>{title}</h2>
@@ -36,5 +36,3 @@ export default function MealItem({
     </article>
   );
 }
-
-
